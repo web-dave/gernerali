@@ -8,10 +8,28 @@ import { Book } from './book.interface';
 })
 export class AppComponent {
   title = 'generali';
-  book: Book = {
-    title: 'Mobi Dick!!',
-    author: ':) Herman Melville',
-    abstract:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores enimreprehenderit eum consectetur debitis, nisi nobis aliquid, amet sint error fuga? Dolorum, harum nesciunt sint voluptatum eligendi velit tempore suscipit!',
-  };
+  foo: Book | undefined;
+  books: Book[] = [
+    {
+      title: 'How to win friends',
+      author: 'Dale Carnegie',
+      abstract: 'How to Win Friends and Influence ...',
+    },
+    {
+      title: 'The Willpower Instinct: How Self-Control Works ...',
+      author: 'Kelly McGonigal',
+      abstract: 'Based on Stanford University ...',
+    },
+    {
+      author: 'Simon Sinek',
+      title: 'Start with WHY',
+      abstract: "START WITH WHY shows that the leaders who've ...",
+    },
+  ];
+  goToBookDetails(book: Book) {
+    console.log('Navigate to book details, soon...');
+    console.table(book);
+    this.foo = book;
+    [].filter((element) => element.title.contains(search));
+  }
 }

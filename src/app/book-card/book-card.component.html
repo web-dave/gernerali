@@ -2,7 +2,8 @@
 <h4>
   {{ content.author }}
 </h4>
-<a>Link</a>
+<a (click)="handleClick($event)">Link</a>
 <p [style]="customStyle">
   {{ content.abstract }}
 </p>
+<hr />

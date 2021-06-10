@@ -1,1 +1,8 @@
-<app-book-card [content]="book"></app-book-card>
+<app-book-card
+  [content]="book"
+  (detailClick)="goToBookDetails($event)"
+  *ngFor="let book of books"
+></app-book-card>
+<pre>
+    {{ foo | json }}
+</pre>
