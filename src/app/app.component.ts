@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BookApiService } from './book-api.service';
 import { Book } from './book.interface';
 
 @Component({
@@ -10,23 +11,7 @@ export class AppComponent {
   searchStr: string = '';
   title = 'generali';
   foo: Book | undefined;
-  books: Book[] = [
-    {
-      title: 'How to win friends',
-      author: 'Dale Carnegie',
-      abstract: 'How to Win Friends and Influence ...',
-    },
-    {
-      title: 'The Willpower Instinct: How Self-Control Works ...',
-      author: 'Kelly McGonigal',
-      abstract: 'Based on Stanford University ...',
-    },
-    {
-      author: 'Simon Sinek',
-      title: 'Start with WHY',
-      abstract: "START WITH WHY shows that the leaders who've ...",
-    },
-  ];
+  books: Book[] = [];
   goToBookDetails(book: Book) {
     console.log('Navigate to book details, soon...');
     console.table(book);
@@ -40,9 +25,7 @@ export class AppComponent {
     return books.filter((book) => book.title?.includes(searchTerm));
   }
 
-  constructor() {
-    // setInterval(() => {
-    //   this.searchStr = 'fri';
-    // }, 1500);
+  constructor(private service: BookApiService) {
+    this.books = this.service.getAll();
   }
 }
