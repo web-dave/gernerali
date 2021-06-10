@@ -12,6 +12,15 @@ export class AppComponent {
   title = 'generali';
   foo: Book | undefined;
   books: Book[] = [];
+
+  constructor(private service: BookApiService) {
+    this.service.getAll().subscribe(
+      (spagetti) => (this.books = spagetti),
+      (err) => console.error(err),
+      () => console.info('DONE!')
+    );
+  }
+
   goToBookDetails(book: Book) {
     console.log('Navigate to book details, soon...');
     console.table(book);
@@ -23,9 +32,5 @@ export class AppComponent {
   filter(books: Book[], searchTerm: string): Book[] {
     console.log('filter');
     return books.filter((book) => book.title?.includes(searchTerm));
-  }
-
-  constructor(private service: BookApiService) {
-    this.books = this.service.getAll();
   }
 }
