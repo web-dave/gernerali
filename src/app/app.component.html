@@ -1,7 +1,14 @@
+<input (input)="updateSearchString($event)" />
+<input (input)="searchStr = $any($event.target).value" />
+<!-- <app-book-card
+  [content]="book"
+  (detailClick)="goToBookDetails($event)"
+  *ngFor="let book of filter(books, searchStr)"
+></app-book-card> -->
 <app-book-card
   [content]="book"
   (detailClick)="goToBookDetails($event)"
-  *ngFor="let book of books"
+  *ngFor="let book of books | bookFilter: searchStr"
 ></app-book-card>
 <pre>
     {{ foo | json }}
