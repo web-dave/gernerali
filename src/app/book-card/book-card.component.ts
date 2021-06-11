@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Book } from '../book.interface';
 
 @Component({
@@ -6,15 +13,20 @@ import { Book } from '../book.interface';
   templateUrl: './book-card.component.html',
   styleUrls: ['./book-card.component.scss'],
 })
-export class BookCardComponent implements OnInit {
+export class BookCardComponent implements OnInit, OnDestroy {
   @Input() content: Book = { abstract: null, author: null, title: null };
   @Output() detailClick = new EventEmitter<Book>();
   customStyle = {
     color: 'red',
   };
   constructor() {}
+  ngOnDestroy(): void {
+    console.log('DESTROY');
+  }
 
   ngOnInit(): void {
+    console.log('INIT');
+
     setTimeout(() => {
       this.customStyle.color = 'green';
     }, 1500);

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { BookApiService } from './book-api.service';
 import { Book } from './book.interface';
 
@@ -7,17 +9,26 @@ import { Book } from './book.interface';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   searchStr: string = '';
   title = 'generali';
   foo: Book | undefined;
   books: Book[] = [];
+  // sub = Subscription.EMPTY;
+  sub = new Subscription();
+  show = true;
 
-  constructor(private service: BookApiService) {
-    this.service.getBooks().subscribe(
-      (spagetti) => (this.books = spagetti),
-      (err) => console.error(err),
-      () => console.info('DONE!')
+  constructor(private service: BookApiService) {}
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+  ngOnInit(): void {
+    this.sub.add(
+      this.service.getBooks().subscribe(
+        (spagetti) => (this.books = spagetti),
+        (err) => console.error(err),
+        () => console.info('DONE!')
+      )
     );
   }
 
