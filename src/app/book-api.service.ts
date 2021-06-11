@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { share } from 'rxjs/operators';
 import { Book } from './book.interface';
 
 @Injectable({
@@ -30,6 +31,6 @@ export class BookApiService {
     return of(this.books);
   }
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>('http://localhost:4730/books');
+    return this.http.get<Book[]>('http://localhost:4730/books').pipe(share());
   }
 }

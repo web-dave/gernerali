@@ -5,8 +5,10 @@ import { Book } from '../book.interface';
   name: 'bookFilter',
 })
 export class BookFilterPipe implements PipeTransform {
-  transform(books: Book[], searchTerm: string): Book[] {
+  transform(books: Book[] | null, searchTerm: string): Book[] | [] {
     console.log('pipe');
-    return books.filter((book) => book.title?.includes(searchTerm));
+    return books
+      ? books.filter((book) => book.title?.includes(searchTerm))
+      : [];
   }
 }
