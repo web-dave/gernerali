@@ -1,23 +1,6 @@
-<input (input)="updateSearchString($event)" />
 <ul>
   <li routerLink="/books">Books</li>
   <li routerLink="/">Home</li>
 </ul>
-<input (input)="searchStr = $any($event.target).value" />
-<!-- <app-book-card
-  [content]="book"
-  (detailClick)="goToBookDetails($event)"
-  *ngFor="let book of filter(books, searchStr)"
-></app-book-card> -->
-<span>{{ (books$ | async | bookFilter: searchStr).length }}</span>
-<!-- <app-book-card
-  [content]="book"
-  (detailClick)="goToBookDetails($event)"
-  *ngFor="let book of books$ | async | bookFilter: searchStr"
-></app-book-card> -->
-<pre>
-    {{ foo | json }}
-</pre>
-<!-- <button (click)="show = !show">ödfioghupsdriufh</button>
-<app-book-card [content]="books[0]" *ngIf="show"></app-book-card> -->
+
 <router-outlet></router-outlet>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { share } from 'rxjs/operators';
+import { map, mapTo, share } from 'rxjs/operators';
 import { Book } from './book.interface';
 
 @Injectable({
@@ -30,7 +30,14 @@ export class BookApiService {
   getAll(): Observable<Book[]> {
     return of(this.books);
   }
-  getBooks(): Observable<Book[]> {
+  getBooks(): Observable<any[]> {
     return this.http.get<Book[]>('http://localhost:4730/books').pipe(share());
+  }
+  getBook(isbn: string): Observable<any> {
+    return this.http
+      .get<Book>('http://localhost:4730/books/' + isbn)
+      .pipe(share());
+
+    // return of(this.books.filter(book => book.isbn === isbn)[0]);
   }
 }

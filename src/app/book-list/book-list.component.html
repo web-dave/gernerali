@@ -1,1 +1,8 @@
 <p>book-list works!</p>
+<input (input)="searchStr = $any($event.target).value" />
+<span>{{ (books$ | async | bookFilter: searchStr).length }}</span>
+<app-book-card
+  [content]="book"
+  (detailClick)="goToBookDetails($event)"
+  *ngFor="let book of books$ | async"
+></app-book-card>

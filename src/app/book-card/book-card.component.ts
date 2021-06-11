@@ -14,7 +14,12 @@ import { Book } from '../book.interface';
   styleUrls: ['./book-card.component.scss'],
 })
 export class BookCardComponent implements OnInit, OnDestroy {
-  @Input() content: Book = { abstract: null, author: null, title: null };
+  @Input() content: Book = {
+    abstract: null,
+    author: null,
+    title: null,
+    isbn: null,
+  };
   @Output() detailClick = new EventEmitter<Book>();
   customStyle = {
     color: 'red',

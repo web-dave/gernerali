@@ -2,8 +2,13 @@
 <h4>
   {{ content.author }}
 </h4>
-<a (click)="handleClick($event)">Link</a>
+<a [routerLink]="[content.isbn]">Link</a>
 <p [style]="customStyle">
   {{ content.abstract }}
 </p>
+<button
+  (mouseenter)="handleClick($event)"
+  *ngIf="content.foo"
+  [value]="content.foo.foo"
+></button>
 <hr />
