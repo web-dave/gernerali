@@ -14,7 +14,7 @@ export class AppComponent {
   books: Book[] = [];
 
   constructor(private service: BookApiService) {
-    this.service.getAll().subscribe(
+    this.service.getBooks().subscribe(
       (spagetti) => (this.books = spagetti),
       (err) => console.error(err),
       () => console.info('DONE!')

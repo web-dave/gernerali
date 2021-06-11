@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Book } from './book.interface';
@@ -23,9 +24,12 @@ export class BookApiService {
       abstract: "START WITH WHY shows that the leaders who've ...",
     },
   ];
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getAll(): Observable<Book[]> {
     return of(this.books);
+  }
+  getBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>('http://localhost:4730/books');
   }
 }

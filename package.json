@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "moin": "echo MOIN"
+    "moin": "echo MOIN",
+    "DMC": "bookmonkey-api"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +30,7 @@
     "@angular/compiler-cli": "~12.0.0",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+    "bookmonkey-api": "^3.0.4",
     "jasmine-core": "~3.7.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
